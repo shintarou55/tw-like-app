@@ -1,5 +1,7 @@
+"use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/lib/auth-context";
 import {
   BellIcon,
   HomeIcon,
@@ -9,9 +11,10 @@ import {
   UserIcon,
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
-export const UserProfileSection = () => {
+export const Navigation = () => {
   // Navigation menu items data
   const menuItems = [
     { icon: HomeIcon, label: "ホーム", active: true, url: "/home" },
@@ -20,6 +23,18 @@ export const UserProfileSection = () => {
     { icon: MailIcon, label: "受信箱", active: false, url: "/messages" },
     { icon: UserIcon, label: "Profile", active: false, url: "profile" },
   ];
+
+  const { logout } = useAuth();
+  const router = useRouter();
+  // ログアウト処理の関数
+  const handleLogout = async () => {
+    try {
+      const result = await logout();
+    } catch (error) {
+      console.log(error);
+    } finally {
+    }
+  };
 
   return (
     <aside className="flex flex-col w-64 items-start gap-6 p-4 relative bg-white border-r border-solid border">
@@ -78,6 +93,7 @@ export const UserProfileSection = () => {
 
         {/* Logout Button */}
         <Button
+          onClick={handleLogout}
           variant="ghost"
           className="flex h-10 items-center justify-center gap-2 p-2 relative self-stretch w-full bg-slate-100 rounded-lg hover:bg-slate-200"
         >
