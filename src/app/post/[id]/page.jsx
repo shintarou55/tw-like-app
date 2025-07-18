@@ -2,7 +2,7 @@
 import React from "react";
 import { Navigation } from "../../../components/Navigation";
 import { useParams } from "next/navigation";
-import { Post } from "@/components/Post";
+import { Post } from "../../../components/Post";
 import { mockPosts } from "@/lib/mock-data";
 import Link from "next/link";
 import { ArrowLeft, ArrowLeftIcon } from "lucide-react";

@@ -16,12 +16,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ImageIcon, X, Loader2, Globe, Users } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "../hook/use-toast";
 import { useAuth } from "@/lib/auth-context"; // 認証情報を取得
 import { usePosts } from "@/lib/posts-context"; // 投稿管理のコンテキストを使用
 import { collection, addDoc } from "firebase/firestore"; // Firestoreのインポート
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"; // Firebase Storageのインポート
-import { db, storage } from "@/firebase.config";
+import { db, storage } from "../../firebase.config";
 
 // 投稿作成フォームのコンポーネント（デスクトップ版）
 // デスクトップでのみ表示され、投稿の作成を行います
@@ -240,9 +240,6 @@ export default function CreatePost() {
                         <Globe className="h-4 w-4 mr-2 text-green-600" />
                         <div>
                           <div className="font-medium">Public</div>
-                          <div className="text-xs text-gray-500">
-                            Everyone can see
-                          </div>
                         </div>
                       </div>
                     </SelectItem>
@@ -252,9 +249,6 @@ export default function CreatePost() {
                         <Users className="h-4 w-4 mr-2 text-blue-600" />
                         <div>
                           <div className="font-medium">Friends only</div>
-                          <div className="text-xs text-gray-500">
-                            Only followers can see
-                          </div>
                         </div>
                       </div>
                     </SelectItem>
